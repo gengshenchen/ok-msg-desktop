@@ -1,0 +1,123 @@
+{
+    "version": 3,
+    "configurePresets": [
+        {
+            "name": "base-6.5.1-macos",
+            "hidden": true,
+            "cacheVariables": {
+                "CMAKE_PREFIX_PATH": "$env{HOME}/Qt/6.5.1/macos"
+            },
+            "inherits": [
+                "base-ninja",
+                "base-macos"
+            ],
+            "environment": {
+                "PATH": "$env{HOME}/Qt/Tools/Ninja/:$penv{PATH}"
+            }
+        },
+        {
+            "name": "base-5.15.2-linux",
+            "hidden": true,
+            "cacheVariables": {
+                "CMAKE_PREFIX_PATH": "/opt/Qt/5.15.2/gcc_64"
+            },
+            "inherits": [
+                "base-ninja",
+                "base-linux"
+            ]
+        },
+        {
+            "name": "base-5.15.2-windows",
+            "hidden": true,
+            "cacheVariables": {
+                "CMAKE_PREFIX_PATH": "C:/Qt/Qt5.15.2/5.15.2/msvc2019_64/"
+            }
+        },
+        {
+            "name": "debug-6.5.1-macos",
+            "binaryDir": "${sourceDir}/build-debug-6.5.1-macos",
+            "inherits": [
+                "base-6.5.1-macos",
+                "base-debug"
+            ]
+        },
+        {
+            "name": "release-6.5.1-macos",
+            "binaryDir": "${sourceDir}/build-release-6.5.1-macos",
+            "inherits": [
+                "base-6.5.1-macos",
+                "base-release"
+            ]
+        },
+        {
+            "name": "profile-6.5.1-macos",
+            "binaryDir": "${sourceDir}/build-profile-6.5.1-macos",
+            "inherits": [
+                "base-6.5.1-macos",
+                "base-profile"
+            ]
+        },
+        {
+            "name": "debug-5.15.2-linux",
+            "binaryDir": "${sourceDir}/build-debug-5.15.2-linux",
+            "inherits": [
+                "base-5.15.2-linux",
+                "base-debug"
+            ]
+        },
+        {
+            "name": "release-5.15.2-linux",
+            "binaryDir": "${sourceDir}/build-release-5.15.2-linux",
+            "inherits": [
+                "base-5.15.2-linux",
+                "base-release"
+            ]
+        },
+        {
+            "name": "profile-5.15.2-linux",
+            "binaryDir": "${sourceDir}/build-profile-5.15.2-linux",
+            "inherits": [
+                "base-5.15.2-linux",
+                "base-profile"
+            ]
+        },
+        {
+            "name": "win-x64-release",
+            "displayName": "Windows x64 Release",
+            "binaryDir": "${sourceDir}/out/${presetName}",
+            "inherits": [
+                "base-release",
+                "base-5.15.2-windows"
+            ],
+            "cacheVariables": {
+                "CMAKE_PREFIX_PATH": "C:/Users/17688/source/repos/ok-msg-desktop/ok-rtc/out/install/release;C:/Users/17688/source/repos/ok-msg-desktop/ok-gloox/out/install/release;${sourceDir}/vcpkg_installed/x64-windows;"
+            }
+        },
+        {
+            "name": "win-x64-debug",
+            "displayName": "Windows x64 Debug",
+            "binaryDir": "${sourceDir}/out/${presetName}",
+            "inherits": [
+                "base-debug",
+                "base-5.15.2-windows"
+            ],
+            "cacheVariables": {
+                "CMAKE_PREFIX_PATH": "C:/Users/17688/source/repos/ok-msg-desktop/ok-rtc/out/install/debug;C:/Users/17688/source/repos/ok-msg-desktop/ok-gloox/out/install/debug;${sourceDir}/vcpkg_installed/x64-windows;"
+            }
+        }
+    ],
+    "buildPresets": [
+        {
+            "name": "build-debug-5.15.2-linux-j10",
+            "hidden": false,
+            "configurePreset": "debug-5.15.2-linux",
+            "jobs": 10
+        },
+        {
+            "name": "build-release-5.15.2-linux-j10",
+            "hidden": false,
+            "configurePreset": "release-5.15.2-linux",
+            "jobs": 10
+        }
+    ]
+}

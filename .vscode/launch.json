@@ -1,0 +1,39 @@
+{
+  // Use IntelliSense to learn about possible attributes.
+  // Hover to view descriptions of existing attributes.
+  // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+  // 记得打开code .前,linux命令行设置 export QTDIR=/opt/Qt/5.15.2/gcc_64，window set...
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "ok-msg (MSVC)",
+      "type": "cppvsdbg",
+      "request": "launch",
+      "program": "${command:cmake.launchTargetPath}",
+      "cwd": "${command:cmake.launchTargetDirectory}",
+      "visualizerFile": "${workspaceFolder}/qt6.natvis",
+      "sourceFileMap": {
+        "C:/work/build/qt5_workdir/w/s": "${QTDIR}/../Src",
+        "Q:/qt5_workdir/w/s": "${QTDIR}/../Src",
+        "C:/Users/qt/work/install": "${QTDIR}/../Src",
+        "C:/Users/qt/work/qt": "${QTDIR}/../Src"
+      }
+    },
+    {
+      "name": "ok-msg (macOS/Linux)",
+      "type": "cppdbg",
+      "request": "launch",
+      "program": "${command:cmake.launchTargetPath}",
+      "cwd": "${command:cmake.launchTargetDirectory}",
+      "linux": {
+        "MIMode": "gdb"
+      },
+      "osx": {
+        "MIMode": "lldb"
+      },
+      "sourceFileMap": {
+        "/home/qt/work/qt": "${QTDIR}/../Src"
+      }
+    }
+  ]
+}
