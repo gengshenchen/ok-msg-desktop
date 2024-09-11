@@ -101,3 +101,19 @@ jobs:
       - name: CMake Build
         run: |
           cmake --build ${{ steps.strings.outputs.build-output-dir }} --config ${{ matrix.build_type }}
+      
+      - name: install create-dmg
+        run: |
+          brew install create-dmg
+      
+      - name: macdepylotqt
+        run: |
+          ${{ env.QT_PATH }}/bin/macdeployqt   ${{ steps.strings.outputs.build-output-dir }}/ok-msg-desktop_${{matrix.os}}_${{ matrix.arch }}.app
+      
+      - name: Upload to release
+        uses: softprops/action-gh-release@v1
+        #if: ${{ startsWith(github.ref, 'refs/tags/') }}
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          files: |
+            ${{ steps.strings.outputs.build-output-dir }}/ok-msg-desktop_${{matrix.os}}_${{ matrix.arch }}.dmg
