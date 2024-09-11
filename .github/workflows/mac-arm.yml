@@ -108,7 +108,7 @@ jobs:
       
       - name: macdepylotqt
         run: |
-          ${{ env.QT_PATH }}/bin/macdeployqt   ${{ steps.strings.outputs.build-output-dir }}/ok-msg-desktop.app
+          ${{env.QT_PATH }}/bin/macdeployqt   ${{ steps.strings.outputs.build-output-dir }}/ok-msg-desktop.app
 
       - name: create dmg
         run: |
