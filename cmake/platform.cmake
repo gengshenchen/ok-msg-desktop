@@ -18,6 +18,7 @@ elseif(CMAKE_SYSTEM_NAME MATCHES "Linux")
     set(LINUX ON)
     message(STATUS "This is Linux")
 elseif(CMAKE_SYSTEM_NAME MATCHES "Darwin")
+    set(MACOS ON CACHE INTERNAL "This is macOS.")
     message(STATUS "This is macOS")
 endif()
 
