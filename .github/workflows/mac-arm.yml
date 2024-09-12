@@ -107,7 +107,7 @@ jobs:
           brew install node
           node -v
           npm -v
-          sudo npm install global create-dmg
+          sudo npm install --global create-dmg
           create-dmg --version
       
       - name: macdepylotqt
