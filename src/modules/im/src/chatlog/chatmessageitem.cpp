@@ -34,6 +34,7 @@ ChatMessageBox::ChatMessageBox(const QPixmap& avatar,
         : IChatItem{id}, _IsSelf{isSelf} {
     QFont baseFont = Nexus::getProfile()->getSettings()->getChatMessageFont();
     auto text = new Text(message, baseFont, false, message);
+    text->setAlternated(isSelf);
     text->setBoundingRadius(4.0);
     text->setContentsMargins(QMarginsF(3, 3, 3, 3));
     init(avatar, contactName, text);

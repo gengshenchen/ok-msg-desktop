@@ -32,6 +32,7 @@
 #include "src/persistence/history.h"
 #include "src/persistence/profile.h"
 #include "src/persistence/settings.h"
+#include "src/chatlog/content/voicecontent.h"
 namespace module::im {
 
 #define NAME_COL_WIDTH 140.0
@@ -50,6 +51,18 @@ IChatItem::Ptr ChatMessage::createChatMessage(const ChatLogItem& item, const QSt
     }
 
     msg->setMessageState(state);
+    msg->setTime(date);
+    return IChatItem::Ptr(msg);
+}
+
+IChatItem::Ptr ChatMessage::createVoiceMessage(const ChatLogItem& item, uint& duration,
+                                               MessageType type, bool isMe, MessageState state,
+                                               const QDateTime& date, bool colorizeName) {
+    auto profile = Nexus::getProfile();
+    auto avatar = profile->loadAvatar(item.getSender());
+    auto ftw = new VoiceContent(duration);
+    ftw->setAlternated(isMe);
+    auto msg = new ChatMessageBox(avatar, item.getDisplayName(), ftw, item.getId(), isMe);
     msg->setTime(date);
     return IChatItem::Ptr(msg);
 }
@@ -92,6 +105,7 @@ IChatItem::Ptr ChatMessage::createFileTransferMessage(const ChatLogItem& item, F
 
     auto ftw = new FileTransferWidget(nullptr, file);
     auto fileContent = new ChatLineContentProxy(ftw, 320, 0.6f);
+    fileContent->setAlternated(isMe);
     auto msg = new ChatMessageBox(avatar, item.getDisplayName(), fileContent, item.getId(), isMe);
     msg->setTime(date);
     return IChatItem::Ptr(msg);

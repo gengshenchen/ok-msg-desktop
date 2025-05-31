@@ -43,6 +43,10 @@ public:
                                             MessageType type, bool isMe, MessageState state,
                                             const QDateTime& date, bool colorizeName = false);
 
+    static IChatItem::Ptr createVoiceMessage(const ChatLogItem& item, uint& duration,
+                                            MessageType type, bool isMe, MessageState state,
+                                            const QDateTime& date, bool colorizeName = false);
+
     static IChatItem::Ptr createChatInfoMessage(const QString& rawMessage,
                                                 SystemMessageType type,
                                                 const QDateTime& date);

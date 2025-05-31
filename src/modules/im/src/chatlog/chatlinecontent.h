@@ -36,7 +36,8 @@ public:
         CHAT_BROKEN,
         CHAT_IMAGE,
         CHAT_SPINNER,
-        CHAT_PROXY
+        CHAT_PROXY,
+        CHAT_VOICE
     };
 
     explicit ChatLineContent(ContentType type, QObject* parent = nullptr);
@@ -69,6 +70,12 @@ public:
 
     virtual void visibilityChanged(bool visible);
     virtual void reloadTheme();
+    virtual void setAlternated(bool alt) {
+        alternate = alt;
+    };
+    bool alternated(){
+        return alternate;
+    }
 
 protected:
     virtual void onCopyEvent() = 0;
@@ -83,6 +90,7 @@ private:
 
     int row = -1;
     int col = -1;
+    bool alternate = false;
 public slots:
     void doReplySelected();
     void doCopySelectedText();
